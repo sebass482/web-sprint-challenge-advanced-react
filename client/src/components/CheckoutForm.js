@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 // Import for useForm hook 
-import {handleChanges, handleSubmit, values, showSuccessMessage} from './useForm'
+import {useForm} from '../hooks/useForm';
 
 const initialValue = {
   firstName: "",
@@ -16,8 +16,16 @@ const initialValue = {
 // and replace the necessary stateful logic from CheckoutForm with the hook
 
 const CheckoutForm = (props) => {
-  
+ 
+  //HOOK
+  const [values, handleChanges] = useForm(initialValue)
+  //HOOK
 
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const handleSubmit = (e) => {
+  e.preventDefault();
+    setShowSuccessMessage(true);
+  };
   return (
     <>
       <form onSubmit={handleSubmit}>
